@@ -1,0 +1,109 @@
+/* register.css */
+
+.main {
+    background-image: url(''); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+
+.cardmain {
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+}
+
+.cardinfo h1 {
+    font-family: 'Comic Sans MS', cursive;
+    color: #000000;
+}
+
+.cardinfo p {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 16px;
+    color: #549bb9;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+label {
+    font-family: 'Verdana', sans-serif;
+    font-size: 16px;
+    color: #000000;
+    background-color: #fff;
+    padding: 5px; 
+    border-radius: 5px; 
+    text-align: center;
+    width: 200px; 
+    position: relative;
+    cursor: pointer;
+}
+
+label:hover {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 210px;
+    font-style: italic;
+}
+
+
+input[type="email"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 210px; 
+    font-style: italic;
+}
+
+.btn {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 20px;
+    background-color: rgb(0, 104, 189);
+    color: #fff;
+    border: none;
+    border-radius: 50%; 
+    font-size: 16px; 
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.btn:hover {
+    background-color: #01080e;
+}
+
+
+.registerButton {
+    background-color: rgb(0, 104, 189);
+
+}
