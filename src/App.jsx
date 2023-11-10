@@ -19,9 +19,9 @@ function App() {
         <Route path="/guide" element={<GuidePage />} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/pagina1" component={Pagina1} />
-        <Route path="/pagina2" component={Pagina2} />
-        <Route path="/pagina3" component={Pagina3} />
+        <Route path="/pagina1" element={<Pagina1/>} />
+        <Route path="/pagina2" element={<Pagina2/>} />
+        <Route path="/pagina3" element={<Pagina3/>} />
       </Routes>
       
     </Router>
