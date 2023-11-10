@@ -1,9 +1,5 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import Bar from '../../components/Bar';
-import Map from '../../assets/Map.png';
-
-import TuImagen from '../../assets/Map.png';
+import React, { useEffect } from 'react';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
 import { DashboardNav } from '../../components/DashboardNav';
 import { MapComponent } from '../../components/MapComponent';
 import Accordion from '@mui/material/Accordion';
@@ -51,9 +47,22 @@ const customStyles = {
         fontSize: "20px",
         textAlign: "center",
     },
+    alert: {
+        color: 'blue', // Puedes ajustar el color según tus preferencias
+        fontSize: '18px',
+        marginBottom: '20px',
+    },
 };
 
 export const GuidePage = () => {
+    useEffect(() => {
+        // Muestra un mensaje de bienvenida usando SweetAlert2 al cargar la página
+        Swal.fire({
+            html: '<div style="' + customStyles.alert + '">¡Bienvenido a nuestra guía turística de Medellín! Por favor, lee con atención la información que hemos preparado para ti.</div>',
+            icon: 'info',
+            confirmButtonText: 'Entendido',
+        });
+    }, []);
     return (
         <>
             <header>

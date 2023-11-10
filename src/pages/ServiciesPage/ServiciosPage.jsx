@@ -30,6 +30,7 @@ import Image11 from '../../assets/image11.jpeg';
 import Image12 from '../../assets/image12.jpeg';
 import { DashboardNav } from '../../components/DashboardNav';
 import Footer from '../../components/Footer';
+import { Link } from 'react-router-dom';
 
 const servicesData = [
     {
@@ -37,72 +38,84 @@ const servicesData = [
         description: 'Una joya escondida con casas coloridas y una gran roca para escalar.',
         price: '$100 COP',
         image: Image1,
+        route: '/pagina1',
     },
     {
         name: 'Guatape',
         description: 'Explora este pintoresco pueblo con vistas panorámicas impresionantes.',
         price: '$150 COP',
         image: Image2,
+        route: '/pagina2',
     },
     {
         name: 'Medellin metrocable',
         description: 'Un emocionante viaje en teleférico con vistas a la ciudad.',
         price: '$120 COP',
         image: Image3,
+        route: '/pagina3',
     },
     {
         name: 'El Poblado',
         description: 'Un barrio moderno con tiendas y restaurantes de moda.',
         price: '$180 COP',
         image: Image4,
+        route: '/pagina4',
     },
     {
         name: 'Plaza Botero',
         description: 'Descubre las famosas esculturas de Fernando Botero en esta plaza.',
         price: '$90 COP',
         image: Image5,
+        route: '/pagina5',
     },
     {
         name: 'Pueblito Paisa',
         description: 'Réplica de un pueblo tradicional con vistas panorámicas.',
         price: '$200 COP',
         image: Image6,
+        route: '/pagina6',
     },
     {
         name: 'Parque explora',
         description: 'Un museo interactivo y acuario para toda la familia.',
         price: '$150 COP',
         image: Image7,
+        route: '/pagina7',
     },
     {
         name: 'Parque Arvi',
         description: 'Explora la naturaleza en este parque ecológico.',
         price: '$130 COP',
         image: Image8,
+        route: '/pagina8',
     },
     {
         name: 'Museo de España',
         description: 'Descubre el arte y la cultura española en Medellín.',
         price: '$160 COP',
         image: Image9,
+        route: '/pagina9',
     },
     {
         name: 'Museo del agua',
         description: 'Aprende sobre el agua y la sostenibilidad de manera divertida.',
         price: '$110 COP',
         image: Image10,
+        route: '/pagina10',
     },
     {
         name: 'Parque Norte',
         description: 'Parque de diversiones con emocionantes atracciones.',
         price: '$170 COP',
         image: Image11,
+        route: '/pagina11',
     },
     {
         name: 'Salto del angel',
         description: 'Una impresionante cascada en plena naturaleza.',
         price: '$140 COP',
         image: Image12,
+        route: '/pagina12',
     },
 ];
 
@@ -194,56 +207,59 @@ export const ServiciosPage = () => {
                     <Grid container spacing={3} justifyContent="center">
                         {row.map((service, index) => (
                             <Grid item xs={12} sm={6} md={3} key={index}>
-                                <Card style={customStyles.card}>
-                                    <CardMedia
-                                        component="img"
-                                        alt={service.name}
-                                        height="260"
-                                        image={service.image}
-                                    />
-                                    <CardContent>
-                                        <Typography variant="h5" component="div">
-                                            {service.name}
-                                            <IconButton
-                                                style={customStyles.favoriteIcon}
-                                                onClick={() => handleFavoriteClick(index)}
-                                            >
-                                                {favorites[index] ? (
-                                                    <FavoriteIcon />
-                                                ) : (
-                                                    <FavoriteBorderIcon />
-                                                )}
-                                            </IconButton>
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            {service.description}
-                                            <br />
-                                            Precio: {service.price}
-                                        </Typography>
-                                        <div style={customStyles.stars}>
-                                            {[1, 2, 3, 4, 5].map((star) => (
+                                <Link to={service.route} style={{ textDecoration: 'none' }}>
+                                    <Card style={customStyles.card}>
+                                        <CardMedia
+                                            component="img"
+                                            alt={service.name}
+                                            height="260"
+                                            image={service.image}
+                                        />
+                                        <CardContent>
+                                            <Typography variant="h5" component="div">
+                                                {service.name}
                                                 <IconButton
-                                                    key={star}
-                                                    onClick={() => handleStarClick(index, star)}
+                                                    style={customStyles.favoriteIcon}
+                                                    onClick={() => handleFavoriteClick(index)}
                                                 >
-                                                    {ratings[index] >= star ? (
-                                                        <StarIcon style={customStyles.starIcon} />
+                                                    {favorites[index] ? (
+                                                        <FavoriteIcon />
                                                     ) : (
-                                                        <StarBorderIcon style={customStyles.starBorderIcon} />
+                                                        <FavoriteBorderIcon />
                                                     )}
                                                 </IconButton>
-                                            ))}
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {service.description}
+                                                <br />
+                                                Precio: {service.price}
+                                            </Typography>
+                                            <div style={customStyles.stars}>
+                                                {[1, 2, 3, 4, 5].map((star) => (
+                                                    <IconButton
+                                                        key={star}
+                                                        onClick={() => handleStarClick(index, star)}
+                                                    >
+                                                        {ratings[index] >= star ? (
+                                                            <StarIcon style={customStyles.starIcon} />
+                                                        ) : (
+                                                            <StarBorderIcon
+                                                                style={customStyles.starBorderIcon}
+                                                            />
+                                                        )}
+                                                    </IconButton>
+                                                ))}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
                             </Grid>
                         ))}
                     </Grid>
                 </section>
             ))}
 
-            <Footer/>
-
+            <Footer />
         </>
     );
 };

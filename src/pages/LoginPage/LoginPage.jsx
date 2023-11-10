@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import style from "./style.module.css";
@@ -9,6 +9,8 @@ import logo from '../../components/Logo.png';
 
 export const LoginPage = () => {
     const navigate = useNavigate(); // hook de react-router-dom para la navegación
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const backgroundStyle = {
         backgroundImage: `url(${fondoPantalla})`,
@@ -18,19 +20,28 @@ export const LoginPage = () => {
     };
 
     const handleLogin = () => {
-        // Aquí puedes verificar las credenciales del usuario y realizar la lógica de inicio de sesión.
-        // Por ahora, simplemente mostraremos la SweetAlert y redireccionaremos.
-        Swal.fire({
-            icon: 'success',
-            title: 'Inicio de sesión exitoso',
-            showConfirmButton: false,
-            timer: 1500 // Muestra la alerta durante 1.5 segundos
-        });
+        // Verificar si el usuario y la contraseña no están vacíos
+        if (!username || !password) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de inicio de sesión',
+                text: 'Por favor, ingresa tu usuario y contraseña.',
+            });
+        } else {
+            // Aquí puedes realizar la lógica de autenticación
+            // Por ahora, simplemente mostraremos la SweetAlert y redireccionaremos.
+            Swal.fire({
+                icon: 'success',
+                title: 'Inicio de sesión exitoso. ¡Ya puedes ver todos nuestros servicios!',
+                showConfirmButton: false,
+                timer: 1500 // Muestra la alerta durante 1.5 segundos
+            });
 
-        // Después de mostrar la alerta, redirige al usuario a la página de servicios después de un breve retraso.
-        setTimeout(() => {
-            navigate('/servicios');
-        }, 1500);
+            // Después de mostrar la alerta, redirige al usuario a la página de servicios después de un breve retraso.
+            setTimeout(() => {
+                navigate('/servicios');
+            }, 1500);
+        }
     };
 
     return (
@@ -49,11 +60,11 @@ export const LoginPage = () => {
                     <div className={style.cardform}>
                         <div className={style.input_user}>
                             <img src={userIcon} alt="user" />
-                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         </div>
                         <div className={style.input_pass}>
                             <img src={passwordIcon} alt="password" />
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <button onClick={handleLogin} className={`${style.btn} ${style['btn-square']}`}>
                             Login
