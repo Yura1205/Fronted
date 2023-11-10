@@ -1,11 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import "./Register.css";
- // Importa el archivo CSS para los estilos de registro
-import logo from '../../components/Logo.png'; // Reemplaza con la ruta correcta de tu logo
-import background from '../../assets/camara.jpg'; // Ruta de tu imagen de fondo
+import logo from '../../components/Logo.png';
+import background from '../../assets/camara.jpg';
 
 const RegisterPage = () => {
+    const handleRegister = (event) => {
+        event.preventDefault();
+
+        // Verificar si todos los campos están llenos
+        const firstName = event.target.firstName.value;
+        const lastName = event.target.lastName.value;
+        const email = event.target.email.value;
+        const username = event.target.username.value;
+        const password = event.target.password.value;
+
+        if (!firstName || !lastName || !email || !username || !password) {
+            // Mostrar SweetAlert indicando que no se pudo registrar debido a campos faltantes
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al registrarse',
+                text: 'Por favor, completa todos los campos para registrarte.',
+            });
+        } else {
+            // Mostrar SweetAlert indicando que se registró exitosamente
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro exitoso',
+                text: 'Te has registrado correctamente.',
+            }).then(() => {
+                // Puedes redirigir al usuario aquí si es necesario
+                // window.location.href = "/servicios";
+            });
+        }
+    };
+
     return (
         <div className="main" style={{ backgroundImage: `url(${background})` }}>
             <div className="cardmain">
@@ -17,7 +47,7 @@ const RegisterPage = () => {
                     <p>Ingresa tus datos para registrarte.</p>
                 </div>
                 <div className="cardform">
-                    <form>
+                    <form onSubmit={handleRegister}>
                         <div className="formGroup">
                             <label htmlFor="firstName">Nombres:</label>
                             <input type="text" id="firstName" name="firstName" />
@@ -39,9 +69,9 @@ const RegisterPage = () => {
                             <input type="password" id="password" name="password" />
                         </div>
                         
-                        <Link to="/servicios" className="btn btn-square registerButton" type="submit">
+                        <button className="btn btn-square registerButton" type="submit">
                             Registrarse
-                        </Link>
+                        </button>
                     </form>
                     <p>¿Ya tienes una cuenta? <Link to="/login">Iniciar sesión</Link></p>
                 </div>
