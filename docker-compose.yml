@@ -1,8 +1,8 @@
 version: '3.9'
 services:
   energy:
-    container_name: turism-front
+    container_name: eco-front
     build:
       context: ./
     ports:
-      - 3275:3275
+      - 3280:3280
